@@ -25,7 +25,11 @@ class User < ApplicationRecord
   has_many :tokens
   has_many :user_roles
   has_many :roles, through: :user_roles
-
+  has_many :plans
+  has_many :seed_shares
+  has_many :plants
+  has_many :wishlists
+  validates :password, presence: true, length(10)
   validates :email, uniqueness: true
 
   scope :invite_not_expired, -> { where('invitation_expiration > ?', DateTime.now) }
